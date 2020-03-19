@@ -1,2 +1,1 @@
-# Blog-posts
-Blog posts - 25/09/2019
+# Blog-posts - 25/09/2019
