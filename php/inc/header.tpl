@@ -12,7 +12,7 @@
 <body>
     <div id="wrapper">
         <header id="menu">
-            <h1 id="menu-title">Blog - Les posts</h1>
+            <h1 id="menu-title">Blog - Les posts </h1>
             <nav id="menu-nav">
                 <ul>
                     <li class="menu-nav-item"><a href="list.php">Messages</a></li>

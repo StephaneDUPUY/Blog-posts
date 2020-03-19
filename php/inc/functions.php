@@ -3,7 +3,7 @@
 // start the session
 session_start();
 
-function login($name, $pass) {
+function login($name, $pass) { // datas provided by user
     //load users database 
     require("data/users.php");
 
@@ -18,11 +18,14 @@ function login($name, $pass) {
                 return true;
             }
         }
+        // if nothing  correspon
+        return false;
     }
 
     return false;
 }
 
+// function to logout
 function logout() {
     // to logout user delete coockie with given expiration date in past
 
@@ -32,6 +35,7 @@ function logout() {
     // session_destroy();
 }
 
+// function to know if user logged
 function isLoggedIn() {
     if (isset($_SESSION['user'])){
         return true;
@@ -40,20 +44,22 @@ function isLoggedIn() {
     return false;
 }
 
+// retrieve user regarding his ID
 function getUser($id) {
-    
-}
-
-function getMe() {
     require("data/users.php");
 
     foreach($users as $user){
-        if ($user['name'] === $_SESSION['user']['name']){
+        if ($user['name'] === $id){
             return $user;
         }
     }
 
     return null;
+}
+
+// retrieve author from message
+function getMe() {
+    return getUser($_SESSION['user']['name']);
 }
 
 
@@ -89,9 +95,15 @@ function displayFlash($messages) {
     endforeach;
 }
 
+// return list of messages
 function getMessages() {
     
-    return [];
+    // read file content and return it in string format
+    // here,this string content jso data
+    $fileContent = file_get_contents("data/messages.mock.json");
+    // convert json in array
+    $messagesArray = json_decode($fileContent, true);
+    return $messagesArray;
 }
 
 function getMessage($messageId) {
@@ -100,7 +112,27 @@ function getMessage($messageId) {
 
 function addMessage($message, $date, $user) {
 
-    
+    // generate uniq key
+    // uniqid return a uniq string
+    $randomKey = "mock" . uniqid();
+
+    // set datas in array
+    $newMessage = [
+        "body" => strip_tags($message),
+        "date" => $date,
+        "user" => $user,
+        "comments" => []
+    ];
+
+    // retrieve old messages
+    $previousMessages = getMessages();
+    $previousMessages[$randomKey] = $newMessage;
+
+    // convert our array in JSON
+    $previousMessagesJson = json_encode($previousMessages, JSON_PRETTY_PRINT);
+
+    // write json messages file
+    file_put_contents("data/messages.json", $previousMessagesJson);
 }
 
 function addCommentToMessage($messageId, $comment, $date, $user) {
@@ -112,4 +144,4 @@ function addCommentToMessage($messageId, $comment, $date, $user) {
 function displayHRDate($timestamp) {
     setlocale(LC_TIME, 'fr_FR.utf8');
     return strftime('le %e %B %Y à %H:%M', $timestamp);
-} 
+}
