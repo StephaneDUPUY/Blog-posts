@@ -1,23 +1,59 @@
 <?php
 
+// start the session
+session_start();
+
 function login($name, $pass) {
-  
+    //load users database 
+    require("data/users.php");
+
+    foreach($users as $user){
+        if ($user['name'] === $name){
+            if ($user['password'] === $pass){
+                // to connect user using cookie in browser
+                // setcookie('blog_login', $name, strtotime("+ 1 week"), "/");
+
+                $_SESSION['user'] = $user;
+
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 function logout() {
-   
+    // to logout user delete coockie with given expiration date in past
+
+    unset($_SESSION['user']);
+
+    // to destroy completely session data ($_SESSION)
+    // session_destroy();
 }
 
 function isLoggedIn() {
-    
+    if (isset($_SESSION['user'])){
+        return true;
+    }
+
+    return false;
 }
 
 function getUser($id) {
-   
+    
 }
 
 function getMe() {
-    
+    require("data/users.php");
+
+    foreach($users as $user){
+        if ($user['name'] === $_SESSION['user']['name']){
+            return $user;
+        }
+    }
+
+    return null;
 }
 
 
