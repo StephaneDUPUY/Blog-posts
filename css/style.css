@@ -1,0 +1,246 @@
+body {
+    font-family: Poppins, sans-serif;
+    font-weight: 300;
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+}
+
+h1, h2, h3 {
+    font-family: Oswald, sans-serif;
+    font-weight: 600;
+}
+
+#wrapper {
+    width: 80%;
+    background-color: rgba(255, 255, 255, .8);
+    padding: 1em;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* header */
+
+#menu {
+    border-bottom: 1px solid #cfd9e2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menu-title {
+    margin: 0 2em 0 0;
+}
+
+
+#menu-nav > ul {
+    padding-left: 0;
+    list-style-type: malayalam;
+    font-size: 1.5em;
+    font-family: Oswald;
+    font-weight: 600;
+    display: flex;
+}
+
+.menu-nav-item {
+    margin-left: 3em;
+}
+
+/* composants */
+
+a.addmessage {
+    display: inline-flex;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    text-decoration: none;
+}
+
+a.addmessage > * {
+    transition: all .5s;
+    text-align: left;
+    box-sizing: border-box;
+    padding: .2em;
+    border-radius: 1.2em;
+    line-height: 1.2em;
+    background-color: #ffcf6b;
+    color: #666;
+}
+
+a.addmessage.addcomment > * {
+    background-color: #245f24;
+    color: white;
+}
+
+a.addmessage em {
+    height: 1.6em;
+    font-style: normal;
+    letter-spacing: initial;
+    font-weight: initial;
+    margin-left: -1.5em;
+    /*! z-index: -1; */
+    width: 1em;
+    overflow: hidden;
+    text-indent: -10em;
+}
+
+a.addmessage:hover em {
+    text-indent: 0;
+    width: 12.5em;
+    padding-left: 1.9em;
+}
+
+a.addmessage.addcomment:hover em {
+    width: 15em;
+}
+
+a.addmessage span {
+    height: 2em;
+    border: .2em solid #ffcf6b;
+    width: 2em;
+    display: inline-block;
+    font-weight: bold;
+    z-index: 2;
+}
+
+a.addmessage.addcomment span {
+    border-color: #245f24;
+}
+
+a.addmessage:hover span {
+    padding-left: .7em;
+}
+
+/* forms */
+
+.centeredform {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 40%;
+    margin: 0 auto;
+    padding: 3em;
+    box-sizing: border-box;
+}
+
+.centeredform label {
+    text-align: center;
+    padding-bottom: .5em;
+    margin: 1em 0 0;
+}
+
+.centeredform input,
+.centeredform textarea {
+    border: 1px solid #80826f;
+    padding: .5em 1em;
+    font-size: .8em;
+    border-radius: .6em;
+    transition: all .3s ease-out;
+}
+
+.centeredform textarea {
+    min-height: 6em;
+}
+
+.centeredform input:focus,
+.centeredform textarea:focus {
+    margin-top: -2.2em;
+    border-top-width: 1px;
+    border-color: #ffcf6b;
+}
+
+.centeredform button {
+    margin-top: 1em;
+    background-color: #ffcf6b;
+    border: none;
+    border-radius: 3em;
+    padding: 1em;
+}
+
+.centeredform p {
+    padding: .3em;
+    text-align: center;
+    color: white;
+}
+
+p.error {
+    background-color: #da5c50;
+    border: 2px solid #e72121;
+}
+
+p.info {
+    background-color: #5cda50;
+    border: 2px solid #21e721;
+}
+
+p.warning {
+    background-color: #ad6910;
+    border: 2px solid #d16221;
+}
+
+/* list */
+
+h2 {
+    font-size: 4em;
+    color: #ccc;
+    letter-spacing: .2em;
+}
+
+h2 a.addmessage {
+    font-size: .5em;
+    vertical-align: middle;
+}
+
+#messages-list {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+.message h3::before {
+    background-image: url(../img/hover.svg);
+    height: 1em;
+    content: "";
+    display: inline-block;
+    height: .8em;
+    width: .8em;
+    background-size: contain;
+}
+
+.message h3 {
+    font-size: 1.5em;
+    color: #245f24;
+    margin-bottom: .3em;
+}
+
+.message h3::after {
+    content: " a dit";
+}
+
+.message p {
+    font-weight: 400;
+    font-style: italic;
+    color: #444;
+    font-size: 1.2em;
+    margin: 0 0 0 .4em;
+}
+
+.message .date {
+    font-style: italic;
+    font-weight: 400;
+    font-size: .8em;
+    margin: .2em 0 1em 1.3em;
+    color: #555;
+}
+
+.message-comments {
+    padding-left: 3em;
+    list-style-type: gurmukhi;
+}
+
+.comment {
+    border-bottom: 1px solid #245f24;
+    font-style: italic;
+}
